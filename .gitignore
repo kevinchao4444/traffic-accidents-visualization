@@ -1,0 +1,26 @@
+# Ignore archive folder with large datasets
+archive/
+
+# Ignore processed data files (will be generated)
+state_totals.csv
+state_heatmaps.json
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Environment variables
+.env
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

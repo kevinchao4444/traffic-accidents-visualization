@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Traffic Data Visualization</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px;
+        }
+        .chart { 
+            border: 1px solid #ccc; 
+            margin: 20px 0;
+        }
+        .bar { 
+            fill: steelblue; 
+        }
+        .bar:hover { 
+            fill: orange; 
+        }
+        .axis { 
+            font-size: 12px; 
+        }
+        .title { 
+            font-size: 16px; 
+            font-weight: bold; 
+            text-anchor: middle;
+        }
+        .state {
+            cursor: pointer;
+        }
+        .state:hover {
+            stroke: #333;
+            stroke-width: 2;
+        }
+        #state-chart {
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        .state-bar {
+            fill: steelblue;
+            cursor: pointer;
+        }
+        .state-bar:hover {
+            fill: orange;
+        }
+        .bar-day {
+            fill: #ffd700;
+        }
+        .bar-night {
+            fill: #191970;
+        }
+        .axis-text {
+            font-size: 11px;
+        }
+        .chart-title {
+            font-size: 14px;
+            font-weight: bold;
+            text-anchor: middle;
+        }
+    </style>
+</head>
+<body>
+    <h1>US Traffic Accidents: Interactive State Map</h1>
+    
+    <div id="us-map"></div>
+    <div id="state-popup" style="position: absolute; background: white; border: 2px solid #333; border-radius: 10px; padding: 15px; display: none; box-shadow: 0 4px 12px rgba(0,0,0,0.4); z-index: 1000; width: 400px;"></div>
+    <div id="tooltip" style="position: absolute; opacity: 0; background: rgba(0,0,0,0.8); color: white; padding: 10px; border-radius: 5px; pointer-events: none;"></div>
+    
+    <script src="visualization.js"></script>
+</body>
+</html>

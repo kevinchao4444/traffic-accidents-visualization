@@ -12,7 +12,7 @@ class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         self.send_header('Access-Control-Allow-Headers', 'Content-Type')
         super().end_headers()
 
-os.chdir(r'c:\Users\kevin\Documents\Python Code\Liz Project')
+os.chdir(r'c:\Users\kevin\Documents\Github\traffic-accidents-visualization')
 
 with socketserver.TCPServer(("", PORT), MyHTTPRequestHandler) as httpd:
     print(f"Server running at http://localhost:{PORT}")

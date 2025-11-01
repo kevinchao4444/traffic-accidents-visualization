@@ -183,7 +183,7 @@ function addEnhancedLegend(svg, colorScale, maxAccidents, width, height) {
         .attr("x", legendWidth/2)
         .attr("y", -8)
         .attr("text-anchor", "middle")
-        .text("Total Accidents per State");
+        .text("Accidents per 100k Population");
 }
 
 function addHeatmapLegend(svg, colorScale, maxValue, width, height, margin) {

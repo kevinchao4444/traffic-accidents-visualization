@@ -61,8 +61,21 @@ print("\nViolin plot data shape:", violin_df.shape)
 print("\nFeature distribution:")
 print(violin_df['feature'].value_counts())
 
-# Create state-level data for map
+# State population data (2023 estimates in millions)
+state_populations = {
+    'CA': 39.0, 'TX': 30.5, 'FL': 22.6, 'NY': 19.3, 'PA': 12.9, 'IL': 12.6, 'OH': 11.8, 'GA': 11.0,
+    'NC': 10.7, 'MI': 10.0, 'NJ': 9.3, 'VA': 8.7, 'WA': 7.8, 'AZ': 7.4, 'TN': 7.1, 'MA': 7.0,
+    'IN': 6.8, 'MO': 6.2, 'MD': 6.2, 'WI': 5.9, 'CO': 5.8, 'MN': 5.7, 'SC': 5.3, 'AL': 5.1,
+    'LA': 4.6, 'KY': 4.5, 'OR': 4.2, 'OK': 4.0, 'CT': 3.6, 'UT': 3.4, 'IA': 3.2, 'NV': 3.2,
+    'AR': 3.1, 'MS': 2.9, 'KS': 2.9, 'NM': 2.1, 'NE': 2.0, 'ID': 1.9, 'WV': 1.8, 'HI': 1.4,
+    'NH': 1.4, 'ME': 1.4, 'MT': 1.1, 'RI': 1.1, 'DE': 1.0, 'SD': 0.9, 'ND': 0.8, 'AK': 0.7,
+    'VT': 0.6, 'WY': 0.6, 'DC': 0.7
+}
+
+# Create state-level data for map with population normalization
 state_totals = df_sample.groupby('State').size().reset_index(name='total_accidents')
+state_totals['population'] = state_totals['State'].map(state_populations)
+state_totals['accidents_per_100k'] = (state_totals['total_accidents'] / state_totals['population']) * 0.1
 
 # Create state-level heatmap data - count actual accidents with features
 state_heatmaps = {}
@@ -84,7 +97,7 @@ for state in df_sample['State'].unique():
     state_heatmaps[state] = heatmap_data
 
 # Save only the files needed for visualization
-state_totals.to_csv('state_totals.csv', index=False)
+state_totals[['State', 'accidents_per_100k']].rename(columns={'accidents_per_100k': 'total_accidents'}).to_csv('state_totals.csv', index=False)
 
 # Save state heatmap data as JSON
 import json
